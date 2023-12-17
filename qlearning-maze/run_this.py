@@ -15,7 +15,7 @@ def updata():
             # RL take action and get next observation and reward
             observation_, reward, done = env.step(action)
             # RL learn from the transition
-            RL.learn(str(observation, action, reward, str(observation_)))
+            RL.learn(str(observation), action, reward, str(observation_))
             # swap observation
             observation = observation_
             # break the while loop if this turn is done

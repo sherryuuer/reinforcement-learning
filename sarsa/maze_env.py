@@ -1,10 +1,3 @@
-"""
-Reinforcement learning maze example.
-Red rectangle:          explorer.
-Black rectangles:       hells       [reward = -1].
-Yellow bin circle:      paradise    [reward = +1].
-All other states:       ground      [reward = 0].
-"""
 import numpy as np
 import time
 import sys
@@ -124,20 +117,3 @@ class Maze(tk.Tk, object):
     def render(self):
         time.sleep(0.1)
         self.update()
-
-
-def update():
-    for t in range(10):
-        s = env.reset()
-        while True:
-            env.render()
-            a = 1
-            s, r, done = env.step(a)
-            if done:
-                break
-
-
-if __name__ == '__main__':
-    env = Maze()
-    env.after(100, update)
-    env.mainloop()

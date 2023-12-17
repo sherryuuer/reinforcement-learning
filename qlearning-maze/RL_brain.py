@@ -1,10 +1,3 @@
-"""
-This part of code is the Q learning brain, which is a brain of the agent.
-All decisions are made in here.
-
-View more on my tutorial page: https://morvanzhou.github.io/tutorials/
-"""
-
 import numpy as np
 import pandas as pd
 
@@ -44,7 +37,7 @@ class QLearningTable:
     def check_state_exist(self, state):
         if state not in self.q_table.index:
             # append new state to q table
-            self.q_table = self.q_table.append(
+            self.q_table = self.q_table._append(
                 pd.Series(
                     [0]*len(self.actions),
                     index=self.q_table.columns,
