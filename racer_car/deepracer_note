@@ -1,0 +1,58 @@
+1
+reward function: baseline: follow the tangent
+track: re:invent 2018 track
+configuration:
+Speed: 3 and 6 m/s
+Steering angle: 0°, 15º, 30º
+
+for speed up add the raward function:
+# Penalize if slow speed action space
+if not params['speed'] < 5:
+  return 1e-3
+
+I think this is opsite,so I update it to be >
+
+robust training:
+retrained the *same model* on different tracks
+had features similar to the original one
+“Cumulo” and “Empire”. 
+last step we retrained the model for 6 hours on the re:invent 2018 track
+
+speed adjust:
+changing the car speed while the car was racing add “surprise” 
+which was not part of the training. 
+
+let it run on slow speed (60%) until sure this was reliable enough
+then increased the speed by up to 85%.
+
+We noticed that the car, once “let alone”, would be able to accelerate and slow down by itself according to the track’s shape.
+
+2
+assumption that robustness is the key to a successful racer model
+The initial reward function was mainly based on waypoints and speed. 
+In a live race, the noise introduced by the surroundings is even worse.
+introduced a penalty for steering
+
+3
+Each reward function was tested independently from other trainings. Only after the race, we learned that it is possible to clone models and build one training on top of the previous one. What a bummer.
+
+mathmatic way
+
+
+
+
+conclusion: Adjust model by observe the training videos。
+
+
+speed
+track center
+steering angle
+steer when slow not fast
+should be think of
+
+can be trained on an exsits model.
+
+1，可以在已经训练好的模型上重复训练
+2，一开始的reward函数可以简单，通过训练中观察动画调整函数
+3，现场可能会被背景干扰所以鲁棒性很重要，可以在相似的赛道上复制模型后，进行训练和尝试
+4，reward函数中加入速度的奖惩机制可能会带来惊喜
